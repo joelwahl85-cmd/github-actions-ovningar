@@ -1,0 +1,24 @@
+name: Manual Input Demo
+
+on:
+  workflow_dispatch:
+    inputs:
+      number:
+        description: "Skriv ett nummer"
+        required: true
+        type: number
+
+jobs:
+  run-if-big:
+    if: ${{ inputs.number >= 7 }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show number
+        run: echo "Number is ${{ inputs.number }}"
+
+  too-small:
+    if: ${{ inputs.number < 7 }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Too small
+        run: echo "Number is too small"
